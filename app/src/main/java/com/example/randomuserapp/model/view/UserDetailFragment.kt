@@ -1,17 +1,13 @@
 package com.example.randomuserapp.model.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.marginLeft
-import androidx.core.view.marginStart
-import com.example.randomuserapp.R
+import androidx.fragment.app.Fragment
 import com.example.randomuserapp.UserApp
 import com.example.randomuserapp.databinding.FragmentUserDetailBinding
-import com.example.randomuserapp.databinding.UserDetailsItemBinding
 import com.example.randomuserapp.model.room.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
