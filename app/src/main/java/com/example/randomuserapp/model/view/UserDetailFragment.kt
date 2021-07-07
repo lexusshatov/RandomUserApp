@@ -16,7 +16,7 @@ import com.example.randomuserapp.model.room.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
-
+//TODO viewModel
 class UserDetailFragment : Fragment() {
 
     private var user: User? = null
