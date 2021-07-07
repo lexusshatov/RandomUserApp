@@ -1,4 +1,4 @@
-package com.example.randomuserapp.model.view
+package com.example.randomuserapp.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.randomuserapp.R
 import com.example.randomuserapp.UserApp
 import com.example.randomuserapp.databinding.FragmentUserDetailBinding
 import com.example.randomuserapp.model.room.User
@@ -46,6 +47,15 @@ class UserDetailFragment : Fragment() {
         user?.let {
 
             binding.toolbarLayout?.title = "${it.firstName} ${it.lastName}"
+
+                binding.userAvatar?.setImageResource(
+                    if (it.gender == "male")
+                        R.drawable.avatar_default_male
+                    else
+                        R.drawable.avatar_default_female
+                )
+
+
             val userDetailsList = listOf(
                 it.gender,
                 it.country,

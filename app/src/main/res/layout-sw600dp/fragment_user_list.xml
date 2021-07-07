@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context="com.example.randomuserapp.model.view.UserDetailHostActivity"
+        tools:context=".view.UserDetailHostActivity"
         tools:listitem="@layout/user_list_content" />
 
     <androidx.constraintlayout.widget.Guideline

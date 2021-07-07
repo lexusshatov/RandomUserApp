@@ -1,4 +1,4 @@
-package com.example.randomuserapp.model.view
+package com.example.randomuserapp.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
