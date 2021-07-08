@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RandomUserApp</string>
-    <string name="title_item_detail">Item Detail</string>
+    <string name="title_fragment_user_list">Random users</string>
+    <string name="title_fragment_user_details">User detail</string>
     <string name="user_avatar_description">user_avatar</string>
     <string name="user_gender">user_gender</string>
     <string name="user_location">user_location</string>

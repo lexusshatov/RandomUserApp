@@ -38,6 +38,7 @@ class UserListViewModel: BaseViewModel<List<User>>() {
                 val users = response.body()?.convert()
                 if (users != null) {
                     saveToLocalBase(users)
+                    loadLocalData()
                 }
             } catch (error: Exception){
                 Log.e(TAG, error.toString())

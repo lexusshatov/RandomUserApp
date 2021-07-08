@@ -2,14 +2,14 @@ package com.example.randomuserapp.view.list
 
 import android.os.Bundle
 import android.util.Log
-import android.view.*
-import android.widget.Toast
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.randomuserapp.R
 import com.example.randomuserapp.base.BaseFragment
 import com.example.randomuserapp.databinding.FragmentUserListBinding
 import com.example.randomuserapp.model.local.User
-import com.example.randomuserapp.view.UserHostActivity
 import com.example.randomuserapp.view.details.UserDetailFragment
 import com.example.randomuserapp.viewmodel.UserListViewModel
 
