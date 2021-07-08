@@ -16,8 +16,8 @@ import com.example.randomuserapp.R
 import com.example.randomuserapp.UserApp
 import com.example.randomuserapp.databinding.FragmentUserListBinding
 import com.example.randomuserapp.databinding.UserListContentBinding
-import com.example.randomuserapp.model.retrofit.convert
-import com.example.randomuserapp.model.room.User
+import com.example.randomuserapp.model.remote.convert
+import com.example.randomuserapp.model.local.User
 import kotlinx.coroutines.*
 
 class UserListFragment : Fragment() {

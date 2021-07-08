@@ -2,8 +2,8 @@ package com.example.randomuserapp
 
 import android.app.Application
 import androidx.room.Room
-import com.example.randomuserapp.model.retrofit.UserApi
-import com.example.randomuserapp.model.room.UserDatabase
+import com.example.randomuserapp.model.remote.UserApi
+import com.example.randomuserapp.model.local.UserDatabase
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.randomuserapp.R
 import com.example.randomuserapp.UserApp
 import com.example.randomuserapp.databinding.FragmentUserDetailBinding
-import com.example.randomuserapp.model.room.User
+import com.example.randomuserapp.model.local.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 

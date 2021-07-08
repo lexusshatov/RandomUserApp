@@ -1,6 +1,6 @@
-package com.example.randomuserapp.model.retrofit
+package com.example.randomuserapp.model.remote
 
-import com.example.randomuserapp.model.room.User
+import com.example.randomuserapp.model.local.User
 
 fun UsersInfoRetrofit.convert(): List<User> {
      return this.results.map {

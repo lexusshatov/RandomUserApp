@@ -1,4 +1,4 @@
-package com.example.randomuserapp.model.retrofit
+package com.example.randomuserapp.model.remote
 
 
 data class UsersInfoRetrofit(

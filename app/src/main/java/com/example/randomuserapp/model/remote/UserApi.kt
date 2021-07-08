@@ -1,4 +1,4 @@
-package com.example.randomuserapp.model.retrofit
+package com.example.randomuserapp.model.remote
 
 import retrofit2.Call
 import retrofit2.http.GET

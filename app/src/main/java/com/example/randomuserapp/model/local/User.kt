@@ -1,4 +1,4 @@
-package com.example.randomuserapp.model.room
+package com.example.randomuserapp.model.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
