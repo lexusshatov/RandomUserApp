@@ -2,4 +2,12 @@
     <string name="app_name">RandomUserApp</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="user_avatar_description">user_avatar</string>
+    <string name="user_gender">user_gender</string>
+    <string name="user_location">user_location</string>
+    <string name="user_phone">user_phone</string>
+    <string name="user_email">user_email</string>
+    <string name="gender">gender</string>
+    <string name="location">location</string>
+    <string name="phone">phone</string>
+    <string name="email">email</string>
 </resources>

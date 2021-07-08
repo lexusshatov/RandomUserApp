@@ -10,7 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.randomuserapp.R
 import com.example.randomuserapp.databinding.ActivityUserDetailBinding
 
-class UserDetailHostActivity : AppCompatActivity() {
+class UserHostActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 

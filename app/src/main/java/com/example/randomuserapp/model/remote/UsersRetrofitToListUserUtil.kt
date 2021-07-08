@@ -13,6 +13,7 @@ fun UsersInfoRetrofit.convert(): List<User> {
              street = it.location.street.name,
              streetNumber = it.location.street.number,
              email = it.email,
+             phone = it.phone,
              pictureUrl = it.picture.large
          )
      }

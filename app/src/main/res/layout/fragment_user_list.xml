@@ -7,13 +7,14 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/user_list"
+        android:id="@+id/userRecyclerView"
         android:name="com.example.randomuserapp.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".view.UserDetailHostActivity"
+        tools:context=".view.UserHostActivity"
         tools:listitem="@layout/user_list_content" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

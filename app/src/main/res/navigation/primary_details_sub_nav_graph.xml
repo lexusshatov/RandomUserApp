@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_details"
-    app:startDestination="@id/fragment_item_detail">
+    app:startDestination="@id/fragment_user_detail">
     <fragment
-        android:id="@+id/fragment_item_detail"
-        android:name="com.example.randomuserapp.view.UserDetailFragment"
+        android:id="@+id/fragment_user_detail"
+        android:name="com.example.randomuserapp.view.details.UserDetailFragment"
         android:label="@string/title_item_detail"
         tools:layout="@layout/fragment_user_detail">
         <argument
