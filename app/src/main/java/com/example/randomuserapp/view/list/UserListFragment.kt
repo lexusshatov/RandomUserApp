@@ -13,6 +13,7 @@ import com.example.randomuserapp.base.BaseFragment
 import com.example.randomuserapp.databinding.FragmentUserListBinding
 import com.example.randomuserapp.model.local.User
 import com.example.randomuserapp.view.details.UserDetailFragment
+import com.example.randomuserapp.view.list.adapter.PaginationListener
 import com.example.randomuserapp.view.list.adapter.UserAdapter
 import com.example.randomuserapp.view.list.adapter.UserAdapterTouchHelper
 import com.example.randomuserapp.viewmodel.UserListViewModel
@@ -62,16 +63,11 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
         val touchHelper = ItemTouchHelper(callback)
         touchHelper.attachToRecyclerView(binding.userRecyclerView)
         binding.userRecyclerView.adapter = adapterTouchHelper.adapter
-        val onScrollListener = object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                if (!recyclerView.canScrollVertically(1) ) {
-                    Log.d(TAG, "view scrolled")
-                    viewModel.loadRemote()
-                }
+        binding.userRecyclerView.addOnScrollListener(
+            PaginationListener {
+                viewModel.loadRemote()
             }
-        }
-        binding.userRecyclerView.addOnScrollListener(onScrollListener)
+        )
 
         viewModel.data.observe(viewLifecycleOwner, {
             adapterTouchHelper.adapter.submitList(it)

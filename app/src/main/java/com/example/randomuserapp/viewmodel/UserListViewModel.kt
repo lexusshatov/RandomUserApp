@@ -12,13 +12,18 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Exception
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 private val TAG = UserListViewModel::class.java.simpleName
 
 class UserListViewModel: BaseViewModel<List<User>>() {
-    private val usersToLoad = 10
+    private val usersToLoad = 1
     private val localData = UserRepository.getUsersLocal()
     private val localDataObserver = Observer<List<User>> {
+        if (it.isEmpty()){
+            loadRemote()
+        }
         mutableData.postValue(it)
     }
 
@@ -29,21 +34,22 @@ class UserListViewModel: BaseViewModel<List<User>>() {
                     it.observeForever(localDataObserver)
                 }
             }
-            loadRemote()
         }
     }
 
     fun loadRemote() {
         viewModelScope.launch (Dispatchers.IO) {
-            try {
-                val response = UserRepository.getUsersRemote(usersToLoad).execute()
-                if (response.isSuccessful) {
-                    response.body()?.convert()?.let {
-                        UserRepository.saveUsersLocal(it)
+            ReentrantLock().withLock {
+                try {
+                    val response = UserRepository.getUsersRemote(usersToLoad).execute()
+                    if (response.isSuccessful) {
+                        response.body()?.convert()?.let {
+                            UserRepository.saveUsersLocal(it)
+                        }
                     }
+                } catch (error: Exception) {
+                    Log.d(TAG, error.toString())
                 }
-            } catch (error: Exception) {
-                Log.d(TAG, error.toString())
             }
         }
     }
