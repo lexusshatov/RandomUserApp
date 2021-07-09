@@ -1,4 +1,4 @@
-package com.example.randomuserapp.view.list
+package com.example.randomuserapp.view.list.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuserapp.databinding.UserListContentBinding
 import com.example.randomuserapp.model.local.User
 
-class UserRecyclerViewAdapter(
+class UserAdapter(
     private val values: MutableList<User>,
-    private val onClickListener: View.OnClickListener,
-) : RecyclerView.Adapter<UserRecyclerViewAdapter.ViewHolder>() {
+    private val onClickListener: (View) -> Unit,
+    private val onSwiped: (View) -> Unit = {}
+) : RecyclerView.Adapter<UserAdapter.ViewHolder>(), OnItemTouchHelper {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -22,7 +23,6 @@ class UserRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = values[position]
         holder.contentView.text = "${user.firstName} ${user.lastName}"
-
         with(holder.itemView) {
             tag = user
             setOnClickListener(onClickListener)
@@ -37,9 +37,20 @@ class UserRecyclerViewAdapter(
     }
 
     fun submitList(users: List<User>){
-        values.clear()
-        values.addAll(users)
+        users.filter { !values.contains(it) }.let {
+            values.addAll(it)
+        }
         notifyDataSetChanged()
     }
 
+    private fun deleteItem(position: Int) {
+        values.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        onSwiped(viewHolder.itemView)
+        val position = viewHolder.adapterPosition
+        deleteItem(position)
+    }
 }

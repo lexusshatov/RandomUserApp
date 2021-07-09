@@ -1,6 +1,5 @@
 package com.example.randomuserapp.model.remote
 
-
 data class UsersInfoRetrofit(
     val info: Info,
     val results: List<Result>

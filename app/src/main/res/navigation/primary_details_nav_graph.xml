@@ -11,10 +11,10 @@
         android:label="@string/title_fragment_user_list">
         <action
             android:id="@+id/show_user_detail"
-            app:destination="@id/item_detail_fragment" />
+            app:destination="@id/user_detail_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/item_detail_fragment"
+        android:id="@+id/user_detail_fragment"
         android:name="com.example.randomuserapp.view.details.UserDetailFragment"
         android:label="@string/title_fragment_user_details"
         tools:layout="@layout/fragment_user_detail">

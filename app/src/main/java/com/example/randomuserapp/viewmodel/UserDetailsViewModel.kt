@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class UserDetailsViewModel(private val userId: Long): BaseViewModel<User>() {
+class UserDetailsViewModel(private val userId: String): BaseViewModel<User>() {
 
     override fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {

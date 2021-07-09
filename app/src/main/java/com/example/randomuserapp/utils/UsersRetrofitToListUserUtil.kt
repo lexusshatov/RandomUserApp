@@ -1,10 +1,12 @@
-package com.example.randomuserapp.model.remote
+package com.example.randomuserapp.utils
 
 import com.example.randomuserapp.model.local.User
+import com.example.randomuserapp.model.remote.UsersInfoRetrofit
 
 fun UsersInfoRetrofit.convert(): List<User> {
      return this.results.map {
          User(
+             id = it.login.uuid,
              gender = it.gender,
              firstName = it.name.first,
              lastName = it.name.last,

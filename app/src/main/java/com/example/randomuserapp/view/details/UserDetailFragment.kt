@@ -11,13 +11,13 @@ import com.example.randomuserapp.R
 import com.example.randomuserapp.base.BaseFragment
 import com.example.randomuserapp.databinding.FragmentUserDetailBinding
 import com.example.randomuserapp.model.local.User
+import com.example.randomuserapp.utils.emptyString
+import com.example.randomuserapp.view.list.UserListFragment
 import com.example.randomuserapp.viewmodel.UserDetailsViewModel
 
+private val TAG = UserDetailFragment::class.java.simpleName
 
 class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
-
-    private val TAG = this.javaClass.simpleName
-
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
             UserDetailsViewModel(userId)
@@ -26,8 +26,8 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
         { inflater, container ->
             FragmentUserDetailBinding.inflate(inflater, container, false)
         }
-    private val userId: Long by lazy {
-        val id = arguments?.getLong(ARG_USER_ID, -1) ?: -1
+    private val userId: String by lazy {
+        val id = arguments?.getString(ARG_USER_ID, emptyString()) ?: emptyString()
         Log.d(TAG, "User id: $id")
         id
     }
@@ -42,31 +42,27 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
     }
 
     private fun showUser(user: User){
-
-        if (user.pictureUrl != null){
-            activity?.let {
-                binding.userAvatar?.let { view ->
-                    val defaultDrawable = AppCompatResources.getDrawable(
-                        requireActivity(),
-                        if (user.gender == "male")
-                            R.drawable.avatar_default_male
-                        else
-                            R.drawable.avatar_default_female
-                    )
+        binding.apply {
+            userAvatar.let {
+                val defaultDrawable = AppCompatResources.getDrawable(
+                    requireActivity(),
+                    if (user.gender == "male")
+                        R.drawable.avatar_default_male
+                    else
+                        R.drawable.avatar_default_female
+                )
+                activity?.let {
                     Glide.with(it)
                         .load(user.pictureUrl)
                         .placeholder(defaultDrawable)
-                        .into(view)
+                        .into(userAvatar)
                 }
             }
-        }
-
-        binding.apply {
-            toolbarLayout?.title = "${user.firstName} ${user.lastName}"
+            toolbarLayout.title = "${user.firstName} ${user.lastName}"
             userGender.text = user.gender
-            userLocation?.text = "${user.country}, ${user.city}, ${user.street}, ${user.streetNumber}"
-            userPhone?.text = "${user.phone}"
-            userEmail?.text = "${user.email}"
+            userLocation.text = "${user.country}, ${user.city}, ${user.street}, ${user.streetNumber}"
+            userPhone.text = "${user.phone}"
+            userEmail.text = "${user.email}"
         }
     }
 
