@@ -8,6 +8,7 @@ fun UsersInfoRetrofit.convert(): List<User> {
          User(
              id = it.login.uuid,
              gender = it.gender,
+             age = it.dob.age,
              firstName = it.name.first,
              lastName = it.name.last,
              country = it.location.country,

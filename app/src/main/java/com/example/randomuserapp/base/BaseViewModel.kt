@@ -1,12 +1,11 @@
 package com.example.randomuserapp.base
 
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.randomuserapp.UserApp
 
-abstract class BaseViewModel<Data>: ViewModel() {
-    protected val mutableData = MutableLiveData<Data>()
-    val data: LiveData<Data> = mutableData
+abstract class BaseViewModel<Data>: AndroidViewModel(UserApp()) {
 
-    abstract fun loadData()
+    abstract val data: LiveData<Data>
 }

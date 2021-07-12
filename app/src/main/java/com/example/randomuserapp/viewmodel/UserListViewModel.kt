@@ -1,67 +1,38 @@
 package com.example.randomuserapp.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.randomuserapp.base.BaseViewModel
-import com.example.randomuserapp.model.UserRepository
+import com.example.randomuserapp.model.base.UserRepository
 import com.example.randomuserapp.model.local.User
 import com.example.randomuserapp.utils.convert
-import com.example.randomuserapp.view.list.UserListFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import java.lang.Exception
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
 
 private val TAG = UserListViewModel::class.java.simpleName
 
-class UserListViewModel: BaseViewModel<List<User>>() {
-    private val usersToLoad = 1
-    private val localData = UserRepository.getUsersLocal()
-    private val localDataObserver = Observer<List<User>> {
-        if (it.isEmpty()){
-            loadRemote()
-        }
-        mutableData.postValue(it)
+class UserListViewModel(private val repository: UserRepository) : BaseViewModel<List<User>>() {
+
+    override val data by lazy {
+        repository.getUsersLocal()
     }
 
-    override fun loadData() {
-        viewModelScope.launch (Dispatchers.IO) {
-            UserRepository.getUsersLocal().let {
-                withContext(Dispatchers.Main) {
-                    it.observeForever(localDataObserver)
-                }
-            }
-        }
-    }
-
-    fun loadRemote() {
-        viewModelScope.launch (Dispatchers.IO) {
-            ReentrantLock().withLock {
-                try {
-                    val response = UserRepository.getUsersRemote(usersToLoad).execute()
-                    if (response.isSuccessful) {
-                        response.body()?.convert()?.let {
-                            UserRepository.saveUsersLocal(it)
-                        }
+    fun loadData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response = repository.getUsersRemote(usersToLoad).execute()
+                if (response.isSuccessful) {
+                    response.body()?.convert()?.let {
+                        repository.saveUsersLocal(it)
                     }
-                } catch (error: Exception) {
-                    Log.d(TAG, error.toString())
                 }
+            } catch (error: Exception) {
+                Log.d(TAG, error.toString())
             }
         }
     }
 
-    fun deleteUser(user: User) {
-        viewModelScope.launch (Dispatchers.IO) {
-            UserRepository.deleteUserLocal(user)
-        }
-    }
-
-    override fun onCleared() {
-        localData.removeObserver(localDataObserver)
-        super.onCleared()
+    companion object {
+        private const val usersToLoad = 10
     }
 }

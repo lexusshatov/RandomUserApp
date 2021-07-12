@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.randomuserapp.R
 import com.example.randomuserapp.base.BaseFragment
 import com.example.randomuserapp.databinding.FragmentUserDetailBinding
+import com.example.randomuserapp.model.base.DI
 import com.example.randomuserapp.model.local.User
 import com.example.randomuserapp.utils.emptyString
 import com.example.randomuserapp.view.list.UserListFragment
@@ -18,9 +19,10 @@ import com.example.randomuserapp.viewmodel.UserDetailsViewModel
 private val TAG = UserDetailFragment::class.java.simpleName
 
 class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
+
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
-            UserDetailsViewModel(userId)
+            UserDetailsViewModel(DI.repository, userId)
         }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->
@@ -38,7 +40,6 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
         viewModel.data.observe(viewLifecycleOwner, {
             showUser(it)
         })
-        viewModel.loadData()
     }
 
     private fun showUser(user: User){
@@ -59,7 +60,7 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
                 }
             }
             toolbarLayout.title = "${user.firstName} ${user.lastName}"
-            userGender.text = user.gender
+            userGender.text = "${user.gender}, ${user.age}"
             userLocation.text = "${user.country}, ${user.city}, ${user.street}, ${user.streetNumber}"
             userPhone.text = "${user.phone}"
             userEmail.text = "${user.email}"

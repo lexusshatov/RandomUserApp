@@ -7,5 +7,5 @@ import retrofit2.http.Query
 interface UserApi {
 
     @GET("api")
-    fun getUsers(@Query("results") count: Int): Call<UsersInfoRetrofit>
+    suspend fun getUsers(@Query("results") count: Int): Call<UsersInfoRetrofit>
 }

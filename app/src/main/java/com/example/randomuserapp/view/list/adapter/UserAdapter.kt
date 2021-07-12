@@ -4,15 +4,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.randomuserapp.databinding.UserListContentBinding
 import com.example.randomuserapp.model.local.User
 
 class UserAdapter(
-    private val values: MutableList<User>,
     private val onClickListener: (View) -> Unit,
-    private val onSwiped: (View) -> Unit = {}
-) : RecyclerView.Adapter<UserAdapter.ViewHolder>(), OnItemTouchHelper {
+    private val onPagination: () -> Unit
+) : ListAdapter<User, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
+
+    private object DIFF_CALLBACK: DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -21,36 +32,29 @@ class UserAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user = values[position]
-        holder.contentView.text = "${user.firstName} ${user.lastName}"
-        with(holder.itemView) {
-            tag = user
-            setOnClickListener(onClickListener)
+        val user = getItem(position)
+        if (position == currentList.lastIndex - 3) {
+            onPagination()
         }
+        holder.bind(user, onClickListener)
     }
 
-    override fun getItemCount() = values.size
+    override fun getItemCount() = currentList.size
 
-    inner class ViewHolder(binding: UserListContentBinding) :
+    class ViewHolder(private val binding: UserListContentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        val contentView: TextView = binding.content
-    }
 
-    fun submitList(users: List<User>){
-        users.filter { !values.contains(it) }.let {
-            values.addAll(it)
+        fun bind(user: User, onClickListener: (View) -> Unit) {
+            binding.content.text = "${user.firstName} ${user.lastName}"
+            with(itemView) {
+                tag = user
+                setOnClickListener(onClickListener)
+            }
         }
-        notifyDataSetChanged()
     }
 
-    private fun deleteItem(position: Int) {
-        values.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        onSwiped(viewHolder.itemView)
-        val position = viewHolder.adapterPosition
-        deleteItem(position)
+    override fun submitList(list: MutableList<User>?) {
+        super.submitList(list)
     }
 }
+

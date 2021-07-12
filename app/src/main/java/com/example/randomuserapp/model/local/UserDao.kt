@@ -10,17 +10,11 @@ interface UserDao {
     fun getAll(): LiveData<List<User>>
 
     @Query("SELECT * FROM User WHERE id=:id")
-    fun getUserById(id: String): User?
+    fun getUserById(id: String): LiveData<User>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: User)
+    suspend fun insert(user: User)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(users: List<User>)
-
-    @Update
-    fun update(user: User)
-
-    @Delete
-    fun delete(user: User)
+    suspend fun insert(users: List<User>)
 }
