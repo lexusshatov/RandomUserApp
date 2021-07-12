@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
-import com.example.randomuserapp.R
+import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
-import com.example.randomuserapp.databinding.FragmentUserDetailBinding
+import com.example.random_user.databinding.FragmentUserDetailBinding
 import com.example.random_user.model.base.DI
 import com.example.random_user.model.local.User
 import com.example.random_user.utils.emptyString
@@ -41,7 +41,7 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
         })
     }
 
-    private fun showUser(user: User){
+    private fun showUser(user: User) {
         binding.apply {
             userAvatar.let {
                 val defaultDrawable = AppCompatResources.getDrawable(
@@ -58,11 +58,20 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
                         .into(userAvatar)
                 }
             }
-            toolbarLayout.title = "${user.firstName} ${user.lastName}"
-            userGender.text = "${user.gender}, ${user.age}"
-            userLocation.text = "${user.country}, ${user.city}, ${user.street}, ${user.streetNumber}"
-            userPhone.text = "${user.phone}"
-            userEmail.text = "${user.email}"
+            toolbarLayout.title = getString(
+                R.string.user_details_title,
+                user.firstName, user.lastName
+            )
+            userGender.text = getString(
+                R.string.user_details_gender_age,
+                user.gender, user.age
+            )
+            userLocation.text = getString(
+                R.string.user_details_location,
+                user.country, user.city, user.street, user.streetNumber
+            )
+            userPhone.text = user.phone
+            userEmail.text = user.email
         }
     }
 

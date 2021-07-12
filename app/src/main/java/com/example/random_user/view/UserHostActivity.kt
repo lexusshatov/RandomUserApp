@@ -7,8 +7,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.randomuserapp.R
-import com.example.randomuserapp.databinding.ActivityUserDetailBinding
+import com.example.random_user.R
+import com.example.random_user.databinding.ActivityUserDetailBinding
 
 class UserHostActivity : AppCompatActivity() {
 

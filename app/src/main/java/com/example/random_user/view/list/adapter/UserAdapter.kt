@@ -6,15 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.random_user.databinding.UserListContainerBinding
 import com.example.random_user.model.local.User
-import com.example.randomuserapp.databinding.UserListContainerBinding
 
 class UserAdapter(
     private val onClickListener: (View) -> Unit,
     private val onPagination: () -> Unit
-) : ListAdapter<User, UserAdapter.ViewHolder>(DIFF_CALLBACK) {
+) : ListAdapter<User, UserAdapter.ViewHolder>(DiffCallback) {
 
-    private object DIFF_CALLBACK: DiffUtil.ItemCallback<User>() {
+    private object DiffCallback: DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem.id == newItem.id
         }
@@ -44,7 +44,8 @@ class UserAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(user: User, onClickListener: (View) -> Unit) {
-            binding.content.text = "${user.firstName} ${user.lastName}"
+            val title = "${user.firstName} ${user.lastName}"
+            binding.content.text = title
             with(itemView) {
                 tag = user
                 setOnClickListener(onClickListener)
