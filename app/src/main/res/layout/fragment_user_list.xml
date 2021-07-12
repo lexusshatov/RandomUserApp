@@ -8,13 +8,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userRecyclerView"
-        android:name="com.example.randomuserapp.ItemListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".view.UserHostActivity"
-        tools:listitem="@layout/user_list_content" />
+        tools:context="com.example.random_user.view.UserHostActivity"
+        tools:listitem="@layout/user_list_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

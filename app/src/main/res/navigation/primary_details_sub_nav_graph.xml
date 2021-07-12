@@ -6,7 +6,7 @@
     app:startDestination="@id/fragment_user_detail">
     <fragment
         android:id="@+id/fragment_user_detail"
-        android:name="com.example.randomuserapp.view.details.UserDetailFragment"
+        android:name="com.example.random_user.view.details.UserDetailFragment"
         android:label="@string/title_fragment_user_details"
         tools:layout="@layout/fragment_user_detail">
         <argument

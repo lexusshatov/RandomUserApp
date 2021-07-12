@@ -11,7 +11,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center|top"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -19,8 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextAppearance="@style/TextTitle"
             app:expandedTitleGravity="center|bottom"
+            app:expandedTitleTextAppearance="@style/TextTitle"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
@@ -28,10 +29,10 @@
                 android:id="@+id/user_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/user_avatar_description"
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
-                app:layout_collapseMode="parallax"
-                android:contentDescription="@string/user_avatar_description"/>
+                app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/detail_toolbar"
@@ -52,11 +53,11 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/user_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/user_details"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -67,12 +68,12 @@
                     android:id="@+id/user_gender"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
                     android:layout_marginStart="10dp"
+                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
+                    android:gravity="center|start"
                     android:text="@string/gender"
                     android:textSize="20sp"
-                    app:drawableStartCompat="@drawable/ic_user_gender_24"
-                    android:drawablePadding="@dimen/user_details_item_drawable_padding"/>
+                    app:drawableStartCompat="@drawable/ic_user_gender_24" />
 
             </LinearLayout>
 
@@ -85,12 +86,12 @@
                     android:id="@+id/user_location"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
                     android:layout_marginStart="10dp"
+                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
+                    android:gravity="center|start"
                     android:text="@string/location"
                     android:textSize="15sp"
-                    app:drawableStartCompat="@drawable/ic_user_location_24"
-                    android:drawablePadding="@dimen/user_details_item_drawable_padding"/>
+                    app:drawableStartCompat="@drawable/ic_user_location_24" />
 
             </LinearLayout>
 
@@ -103,11 +104,11 @@
                     android:id="@+id/user_phone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
                     android:layout_marginStart="10dp"
+                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
+                    android:gravity="center|start"
                     android:text="@string/phone"
                     android:textSize="20sp"
-                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
                     app:drawableStartCompat="@drawable/ic_user_phone_24" />
 
             </LinearLayout>
@@ -121,11 +122,11 @@
                     android:id="@+id/user_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center|start"
                     android:layout_marginStart="10dp"
+                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
+                    android:gravity="center|start"
                     android:text="@string/email"
                     android:textSize="20sp"
-                    android:drawablePadding="@dimen/user_details_item_drawable_padding"
                     app:drawableStartCompat="@drawable/ic_user_email_24" />
 
             </LinearLayout>
