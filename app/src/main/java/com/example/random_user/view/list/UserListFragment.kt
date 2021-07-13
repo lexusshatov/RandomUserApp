@@ -30,22 +30,14 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val userDetailFragmentContainer: View? = view.findViewById(R.id.user_detail_container)
         val adapter = UserAdapter(
-            onClickListener = { userView ->
-                val user = userView.tag as User
+            onClickListener = { user ->
                 val bundle = Bundle()
                 bundle.putString(
                     UserDetailFragment.ARG_USER_ID,
                     user.id
                 )
-                Log.d(TAG, "User id: ${user.id}")
-                if (userDetailFragmentContainer != null) {
-                    userDetailFragmentContainer.findNavController()
-                        .navigate(R.id.fragment_user_detail, bundle)
-                } else {
-                    userView.findNavController().navigate(R.id.show_user_detail, bundle)
-                }
+                view.findNavController().navigate(R.id.show_user_detail, bundle)
             },
             onPagination = {
                 viewModel.loadData()
@@ -57,7 +49,6 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
             if (it.isEmpty()) {
                 viewModel.loadData()
             }
-            Log.d(TAG, it.toString())
             adapter.submitList(it.toMutableList())
         })
     }

@@ -8,3 +8,4 @@ abstract class BaseViewModel<Data>: AndroidViewModel(UserApp()) {
 
     abstract val data: LiveData<Data>
 }
+

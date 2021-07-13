@@ -29,7 +29,6 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
         }
     private val userId: String by lazy {
         val id = arguments?.getString(ARG_USER_ID, emptyString()) ?: emptyString()
-        Log.d(TAG, "User id: $id")
         id
     }
 

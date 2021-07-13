@@ -10,7 +10,7 @@ import com.example.random_user.databinding.UserListContainerBinding
 import com.example.random_user.model.local.User
 
 class UserAdapter(
-    private val onClickListener: (View) -> Unit,
+    private val onClickListener: (User) -> Unit,
     private val onPagination: () -> Unit
 ) : ListAdapter<User, UserAdapter.ViewHolder>(DiffCallback) {
 
@@ -43,18 +43,15 @@ class UserAdapter(
     class ViewHolder(private val binding: UserListContainerBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(user: User, onClickListener: (View) -> Unit) {
+        fun bind(user: User, onClickListener: (User) -> Unit) {
             val title = "${user.firstName} ${user.lastName}"
             binding.content.text = title
-            with(itemView) {
-                tag = user
-                setOnClickListener(onClickListener)
+            with(binding.root) {
+                setOnClickListener {
+                    onClickListener(user)
+                }
             }
         }
-    }
-
-    override fun submitList(list: MutableList<User>?) {
-        super.submitList(list)
     }
 }
 

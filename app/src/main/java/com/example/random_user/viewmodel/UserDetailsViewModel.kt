@@ -12,7 +12,6 @@ class UserDetailsViewModel(
 ) : BaseViewModel<User>() {
 
     override val data by lazy {
-        runBlocking(Dispatchers.IO) { repository.getUserById(userId) }
+        repository.getUserById(userId)
     }
-
 }
