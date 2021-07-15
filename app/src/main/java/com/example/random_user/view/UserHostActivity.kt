@@ -9,7 +9,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.random_user.R
 import com.example.random_user.databinding.ActivityUserDetailBinding
-import com.example.random_user.model.base.DI
 
 class UserHostActivity : AppCompatActivity() {
 
@@ -26,8 +25,6 @@ class UserHostActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        DI.getInstance().init { this }
     }
 
     override fun onSupportNavigateUp(): Boolean {
