@@ -10,6 +10,7 @@ import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
 import com.example.random_user.model.base.DI
+import com.example.random_user.model.local.Gender
 import com.example.random_user.model.local.User
 import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel
@@ -25,8 +26,7 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
             FragmentUserDetailBinding.inflate(inflater, container, false)
         }
     private val userId: String by lazy {
-        val id = arguments?.getString(ARG_USER_ID, emptyString()) ?: emptyString()
-        id
+        arguments?.getString(ARG_USER_ID, emptyString()) ?: emptyString()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
             userAvatar.let {
                 val defaultDrawable = AppCompatResources.getDrawable(
                     requireActivity(),
-                    if (user.gender == "male")
+                    if (user.gender == Gender.MALE)
                         R.drawable.avatar_default_male
                     else
                         R.drawable.avatar_default_female

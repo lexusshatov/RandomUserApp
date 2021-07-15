@@ -3,8 +3,6 @@ package com.example.random_user.model.repository
 import androidx.lifecycle.LiveData
 import com.example.random_user.model.local.User
 import com.example.random_user.model.local.UserDatabase
-import com.example.random_user.model.remote.UserApi
-import com.example.random_user.model.remote.UsersInfoRetrofit
 
 class LocalRepository(private val database: UserDatabase) {
 

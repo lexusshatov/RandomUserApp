@@ -17,6 +17,7 @@ class UserAdapter(
 ) : ListAdapter<User, UserAdapter.ViewHolder>(DiffCallback) {
 
     private object DiffCallback : DiffUtil.ItemCallback<User>() {
+
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem.id == newItem.id
         }
@@ -27,14 +28,17 @@ class UserAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            UserListContainerBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = UserListContainerBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = getItem(position)
-        if (position == currentList.lastIndex - 3) {
+        if (position == currentList.lastIndex - usersLeftBeforeScroll) {
             onPagination()
         }
         holder.bind(user, onClickListener)
@@ -55,6 +59,10 @@ class UserAdapter(
                 }
             }
         }
+    }
+
+    companion object {
+        private const val usersLeftBeforeScroll = 3
     }
 }
 

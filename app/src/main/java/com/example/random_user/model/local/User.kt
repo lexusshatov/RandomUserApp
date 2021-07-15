@@ -1,11 +1,13 @@
 package com.example.random_user.model.local
 
 import androidx.room.*
+import java.util.*
 
+@TypeConverters(GenderConverter::class)
 @Entity
 data class User(
     @PrimaryKey val id: String,
-    @ColumnInfo(name = "gender") val gender: String,
+    @ColumnInfo(name = "gender") val gender: Gender,
     @ColumnInfo(name = "age") val age: Int,
     @ColumnInfo(name = "first_name") val firstName: String,
     @ColumnInfo(name = "last_name") val lastName: String,
@@ -18,4 +20,17 @@ data class User(
     @ColumnInfo(name = "picture_url") val pictureUrl: String
 )
 
+enum class Gender(val gender: String) {
+    MALE("male"),
+    FEMALE("female")
+}
+
+class GenderConverter {
+
+    @TypeConverter
+    fun genderToEnum(gender: String) = enumValueOf<Gender>(gender.uppercase(Locale.getDefault()))
+
+    @TypeConverter
+    fun enumToGender(gender: Gender) = gender.gender
+}
 

@@ -1,10 +1,9 @@
 package com.example.random_user.base
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.random_user.UserApp
+import androidx.lifecycle.ViewModel
 
-abstract class BaseViewModel<Data> : AndroidViewModel(UserApp()) {
+abstract class BaseViewModel<Data> : ViewModel() {
 
     abstract val data: LiveData<Data>
 }

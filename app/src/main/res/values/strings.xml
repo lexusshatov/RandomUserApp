@@ -11,7 +11,6 @@
     <string name="location">location</string>
     <string name="phone">phone</string>
     <string name="email">email</string>
-
     <string name="user_details_title">%1s %2s</string>
     <string name="user_details_gender_age">%1s, %2d</string>
     <string name="user_details_location">%1s, %2s, %3s, %4d</string>

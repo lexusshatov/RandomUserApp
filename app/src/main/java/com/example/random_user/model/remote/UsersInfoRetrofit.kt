@@ -1,6 +1,8 @@
 package com.example.random_user.model.remote
 
+import com.example.random_user.model.local.Gender
 import com.example.random_user.model.local.UserBuilder
+import java.util.*
 
 data class UsersInfoRetrofit(
     val info: Info,
@@ -93,7 +95,7 @@ data class Timezone(
 
 fun Result.toUser() = UserBuilder(login.uuid)
     .withAge(dob.age)
-    .withGender(gender)
+    .withGender(Gender.valueOf(gender.uppercase(Locale.getDefault())))
     .withName(name.first, name.last)
     .withCountry(location.country)
     .withCity(location.city)

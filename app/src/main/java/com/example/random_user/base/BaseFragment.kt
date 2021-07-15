@@ -13,6 +13,7 @@ abstract class BaseFragment<VM : BaseViewModel<*>, VB : ViewBinding> : Fragment(
     protected val viewModel by lazy {
         viewModelProvider()
     }
+
     abstract val viewBindingProvider: (LayoutInflater, ViewGroup?) -> VB
     private var bindingInternal: VB? = null
     protected val binding: VB

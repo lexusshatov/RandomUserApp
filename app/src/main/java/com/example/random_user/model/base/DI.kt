@@ -36,7 +36,6 @@ class DI {
 
     val repository by lazy {
         if (!initialized) throw UninitializedPropertyAccessException("DI not initialized")
-
         RepositoryDecorator(
             LocalRepository(database),
             ApiRepository(api)

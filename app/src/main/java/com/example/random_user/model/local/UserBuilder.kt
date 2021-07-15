@@ -1,7 +1,7 @@
 package com.example.random_user.model.local
 
 class UserBuilder(private val id: String) {
-    private var gender = "male"
+    private var gender = Gender.MALE
     private var age = 20
     private var firstName = "John"
     private var lastName = "Smith"
@@ -13,7 +13,7 @@ class UserBuilder(private val id: String) {
     private var phone = "3-800-0000-00-00"
     private var pictureUrl = ""
 
-    fun withGender(gender: String): UserBuilder {
+    fun withGender(gender: Gender): UserBuilder {
         this.gender = gender
         return this
     }

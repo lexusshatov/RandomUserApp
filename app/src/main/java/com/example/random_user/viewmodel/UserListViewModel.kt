@@ -20,6 +20,6 @@ class UserListViewModel(private val repository: RepositoryDecorator) : BaseViewM
     }
 
     companion object {
-        private const val usersToLoad = 15
+        private const val usersToLoad = 20
     }
 }
