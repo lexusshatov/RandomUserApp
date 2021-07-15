@@ -1,7 +1,6 @@
 package com.example.random_user.view.details
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,13 +14,11 @@ import com.example.random_user.model.local.User
 import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel
 
-private val TAG = UserDetailFragment::class.java.simpleName
-
 class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
 
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
-            UserDetailsViewModel(DI.repository, userId)
+            UserDetailsViewModel(DI.getInstance().repository, userId)
         }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->

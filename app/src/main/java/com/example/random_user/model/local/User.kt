@@ -1,11 +1,9 @@
 package com.example.random_user.model.local
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity
-data class User(
+data class User (
     @PrimaryKey val id: String,
     @ColumnInfo(name = "gender") val gender: String,
     @ColumnInfo(name = "age") val age: Int,
@@ -19,3 +17,5 @@ data class User(
     @ColumnInfo(name = "phone") val phone: String,
     @ColumnInfo(name = "picture_url") val pictureUrl: String
 )
+
+

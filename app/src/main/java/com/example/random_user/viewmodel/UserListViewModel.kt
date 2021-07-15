@@ -1,34 +1,20 @@
 package com.example.random_user.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
 import com.example.random_user.base.BaseViewModel
-import com.example.random_user.model.base.UserRepository
 import com.example.random_user.model.local.User
-import com.example.random_user.utils.convert
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.random_user.model.repository.RepositoryDecorator
 
-private val TAG = UserListViewModel::class.java.simpleName
-
-class UserListViewModel(private val repository: UserRepository) : BaseViewModel<List<User>>() {
+class UserListViewModel(private val repository: RepositoryDecorator) : BaseViewModel<List<User>>() {
 
     override val data by lazy {
-        repository.getUsersLocal()
+        repository.getUsers(usersToLoad)
     }
 
     fun loadData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                val body = repository.getUsersRemote(usersToLoad)
-                repository.saveUsersLocal(body.convert())
-            } catch (error: Exception) {
-                Log.d(TAG, error.toString())
-            }
-        }
+        repository.getUsers(usersToLoad)
     }
 
     companion object {
-        private const val usersToLoad = 10
+        private const val usersToLoad = 15
     }
 }

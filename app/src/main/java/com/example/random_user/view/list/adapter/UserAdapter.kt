@@ -1,13 +1,15 @@
 package com.example.random_user.view.list.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.random_user.databinding.UserListContainerBinding
 import com.example.random_user.model.local.User
+
+private val TAG: String = UserAdapter::class.java.simpleName
 
 class UserAdapter(
     private val onClickListener: (User) -> Unit,
@@ -49,6 +51,7 @@ class UserAdapter(
             with(binding.root) {
                 setOnClickListener {
                     onClickListener(user)
+                    Log.d(TAG, "User ID: ${user.id}")
                 }
             }
         }

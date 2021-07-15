@@ -1,13 +1,11 @@
 package com.example.random_user.viewmodel
 
 import com.example.random_user.base.BaseViewModel
-import com.example.random_user.model.base.UserRepository
 import com.example.random_user.model.local.User
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import com.example.random_user.model.repository.RepositoryDecorator
 
 class UserDetailsViewModel(
-    private val repository: UserRepository,
+    private val repository: RepositoryDecorator,
     private val userId: String
 ) : BaseViewModel<User>() {
 

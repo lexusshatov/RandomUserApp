@@ -7,6 +7,6 @@ class UserApp: Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DI.init { applicationContext }
+        DI.getInstance().init { applicationContext }
     }
 }

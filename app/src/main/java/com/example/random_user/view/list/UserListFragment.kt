@@ -21,7 +21,7 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
 
     override val viewModelProvider: () -> UserListViewModel =
         {
-            UserListViewModel(DI.repository)
+            UserListViewModel(DI.getInstance().repository)
         }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserListBinding =
         { inflater, container ->
