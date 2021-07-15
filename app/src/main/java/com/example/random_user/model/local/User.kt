@@ -3,7 +3,7 @@ package com.example.random_user.model.local
 import androidx.room.*
 
 @Entity
-data class User (
+data class User(
     @PrimaryKey val id: String,
     @ColumnInfo(name = "gender") val gender: String,
     @ColumnInfo(name = "age") val age: Int,

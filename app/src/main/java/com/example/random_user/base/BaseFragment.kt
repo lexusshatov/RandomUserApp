@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment<VM: BaseViewModel<*>, VB: ViewBinding>: Fragment() {
+abstract class BaseFragment<VM : BaseViewModel<*>, VB : ViewBinding> : Fragment() {
 
     abstract val viewModelProvider: () -> VM
     protected val viewModel by lazy {

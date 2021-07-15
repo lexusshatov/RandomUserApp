@@ -8,10 +8,9 @@ import com.example.random_user.model.remote.UsersInfoRetrofit
 
 class LocalRepository(private val database: UserDatabase) {
 
-    fun getUsers(): LiveData<List<User>>
-            = database.userDao().getAll()
-    fun getUserById(id: String) : LiveData<User>
-            = database.userDao().getUserById(id)
-    suspend fun saveUsers(users: List<User>)
-            = database.userDao().insert(users)
+    fun getUsers(): LiveData<List<User>> = database.userDao().getAll()
+
+    fun getUserById(id: String): LiveData<User> = database.userDao().getUserById(id)
+
+    suspend fun saveUsers(users: List<User>) = database.userDao().insert(users)
 }

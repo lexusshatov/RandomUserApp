@@ -1,7 +1,6 @@
 package com.example.random_user.view.list
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +9,9 @@ import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserListBinding
 import com.example.random_user.model.base.DI
-import com.example.random_user.model.local.User
 import com.example.random_user.view.details.UserDetailFragment
 import com.example.random_user.view.list.adapter.UserAdapter
 import com.example.random_user.viewmodel.UserListViewModel
-
-private val TAG = UserListFragment::class.java.simpleName
 
 class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding>() {
 

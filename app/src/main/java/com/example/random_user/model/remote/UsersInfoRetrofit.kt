@@ -1,5 +1,7 @@
 package com.example.random_user.model.remote
 
+import com.example.random_user.model.local.UserBuilder
+
 data class UsersInfoRetrofit(
     val info: Info,
     val results: List<Result>
@@ -88,3 +90,15 @@ data class Timezone(
     val description: String,
     val offset: String
 )
+
+fun Result.toUser() = UserBuilder(this.login.uuid)
+    .withAge(this.dob.age)
+    .withGender(this.gender)
+    .withName(this.name.first, this.name.last)
+    .withCountry(this.location.country)
+    .withCity(this.location.city)
+    .withStreet(this.location.street.name, this.location.street.number)
+    .withEmail(this.email)
+    .withPhone(this.phone)
+    .withPicture(this.picture.large)
+    .build()

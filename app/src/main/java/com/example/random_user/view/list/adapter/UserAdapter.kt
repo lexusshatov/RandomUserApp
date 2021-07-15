@@ -16,7 +16,7 @@ class UserAdapter(
     private val onPagination: () -> Unit
 ) : ListAdapter<User, UserAdapter.ViewHolder>(DiffCallback) {
 
-    private object DiffCallback: DiffUtil.ItemCallback<User>() {
+    private object DiffCallback : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem.id == newItem.id
         }

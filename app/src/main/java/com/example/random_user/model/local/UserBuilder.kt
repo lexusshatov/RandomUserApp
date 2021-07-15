@@ -29,11 +29,19 @@ class UserBuilder(private val id: String) {
         return this
     }
 
-    fun withLocation(country: String, city: String, street: String, streetNumber: Int): UserBuilder {
-        this.country = country
-        this.city = city
+    fun withStreet(street: String, streetNumber: Int): UserBuilder {
         this.street = street
         this.streetNumber = streetNumber
+        return this
+    }
+
+    fun withCountry(country: String): UserBuilder {
+        this.country = country
+        return this
+    }
+
+    fun withCity(city: String): UserBuilder {
+        this.city = city
         return this
     }
 
@@ -52,7 +60,7 @@ class UserBuilder(private val id: String) {
         return this
     }
 
-    fun build() = User (
+    fun build() = User(
         id = id,
         gender = gender,
         age = age,
