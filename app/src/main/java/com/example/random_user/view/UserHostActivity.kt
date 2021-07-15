@@ -27,7 +27,7 @@ class UserHostActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        DI.getInstance().init { applicationContext }
+        DI.getInstance().init { this }
     }
 
     override fun onSupportNavigateUp(): Boolean {

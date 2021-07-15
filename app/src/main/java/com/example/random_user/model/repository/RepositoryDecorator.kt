@@ -1,29 +1,31 @@
 package com.example.random_user.model.repository
 
-import androidx.lifecycle.LiveData
 import com.example.random_user.model.local.User
+import com.example.random_user.model.remote.Result
 import com.example.random_user.model.remote.toUser
 
+interface DataRepository : DataFetcher<Unit>, DataCache<User, String>
+
 class RepositoryDecorator(
-    private val database: LocalRepository,
-    private val api: ApiRepository
-) {
+    private val database: DataCache<User, String>,
+    private val api: DataFetcher<List<Result>>
+) : DataRepository {
 
-    private suspend fun saveUsers(users: List<User>) {
-        database.saveUsers(users)
-    }
-
-    suspend fun fetchData(count: Int) {
+    override suspend fun fetchData(count: Int) {
         try {
-            val body = api.getUsers(count)
-            val users = body.results.map { it.toUser() }
-            saveUsers(users)
+            val body = api.fetchData(count)
+            val users = body.map { it.toUser() }
+            saveData(users)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun getUsers(): LiveData<List<User>> = database.getUsers()
+    override fun getAllData() = database.getAllData()
 
-    fun getUserById(id: String) = database.getUserById(id)
+    override fun getDataById(id: String) = database.getDataById(id)
+
+    override suspend fun saveData(users: List<User>) {
+        database.saveData(users)
+    }
 }

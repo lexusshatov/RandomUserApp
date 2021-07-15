@@ -10,6 +10,6 @@ class UserDetailsViewModel(
 ) : BaseViewModel<User>() {
 
     override val data by lazy {
-        repository.getUserById(userId)
+        repository.getDataById(userId)
     }
 }

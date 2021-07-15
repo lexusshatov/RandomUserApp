@@ -1,14 +1,13 @@
 package com.example.random_user.model.repository
 
-import androidx.lifecycle.LiveData
 import com.example.random_user.model.local.User
 import com.example.random_user.model.local.UserDatabase
 
-class LocalRepository(private val database: UserDatabase) {
+class LocalRepository(private val database: UserDatabase) : DataCache<User, String> {
 
-    fun getUsers(): LiveData<List<User>> = database.userDao().getAll()
+    override fun getAllData() = database.userDao().getAll()
 
-    fun getUserById(id: String): LiveData<User> = database.userDao().getUserById(id)
+    override fun getDataById(id: String) = database.userDao().getUserById(id)
 
-    suspend fun saveUsers(users: List<User>) = database.userDao().insert(users)
+    override suspend fun saveData(users: List<User>) = database.userDao().insert(users)
 }

@@ -1,8 +1,9 @@
 package com.example.random_user.model.repository
 
+import com.example.random_user.model.remote.Result
 import com.example.random_user.model.remote.UserApi
 
-class ApiRepository(private val api: UserApi) {
+class ApiRepository(private val api: UserApi) : DataFetcher<List<Result>> {
 
-    suspend fun getUsers(count: Int) = api.getUsers(count)
+    override suspend fun fetchData(count: Int) = api.getUsers(count).results
 }

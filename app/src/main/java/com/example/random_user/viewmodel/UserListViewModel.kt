@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class UserListViewModel(private val repository: RepositoryDecorator) : BaseViewModel<List<User>>() {
 
     override val data by lazy {
-        repository.getUsers()
+        repository.getAllData()
     }
 
     fun loadData() {
