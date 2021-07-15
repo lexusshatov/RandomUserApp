@@ -9,6 +9,10 @@ class RepositoryDecorator(
     private val api: ApiRepository
 ) {
 
+    private suspend fun saveUsers(users: List<User>) {
+        database.saveUsers(users)
+    }
+
     suspend fun fetchData(count: Int) {
         try {
             val body = api.getUsers(count)
@@ -22,8 +26,4 @@ class RepositoryDecorator(
     fun getUsers(): LiveData<List<User>> = database.getUsers()
 
     fun getUserById(id: String) = database.getUserById(id)
-
-    private suspend fun saveUsers(users: List<User>) {
-        database.saveUsers(users)
-    }
 }
