@@ -3,12 +3,13 @@ package com.example.random_user.model.repository
 import com.example.random_user.model.local.User
 import com.example.random_user.model.remote.Result
 import com.example.random_user.model.remote.toUser
+import javax.inject.Inject
 
 interface DataRepository : DataFetcher<Unit>, DataCache<User, String>
 
-class RepositoryDecorator(
-    private val database: DataCache<User, String>,
-    private val api: DataFetcher<List<Result>>
+class RepositoryDecorator @Inject constructor(
+    private val api: DataFetcher<List<Result>>,
+    private val database: DataCache<User, String>
 ) : DataRepository {
 
     override suspend fun fetchData(count: Int) {

@@ -2,8 +2,9 @@ package com.example.random_user.model.repository
 
 import com.example.random_user.model.local.User
 import com.example.random_user.model.local.UserDatabase
+import javax.inject.Inject
 
-class LocalRepository(private val database: UserDatabase) : DataCache<User, String> {
+class LocalRepository @Inject constructor(private val database: UserDatabase) : DataCache<User, String> {
 
     override fun getAllData() = database.userDao().getAll()
 
