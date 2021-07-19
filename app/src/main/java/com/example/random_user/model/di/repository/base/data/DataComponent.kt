@@ -1,4 +1,4 @@
-package com.example.random_user.model.di.data
+package com.example.random_user.model.di.repository.base.data
 
 import android.content.Context
 import com.example.random_user.model.local.UserDatabase

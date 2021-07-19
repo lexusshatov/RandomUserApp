@@ -8,12 +8,14 @@ import com.example.random_user.model.repository.DataRepository
 import com.example.random_user.model.repository.RepositoryDecorator
 import dagger.Module
 import dagger.Provides
+import javax.inject.Inject
 
 @Module
-class RepositoryDecoratorModule(
-    private val api: DataFetcher<List<Result>>,
-    private val database: DataCache<User, String>
-) {
+class RepositoryDecoratorModule {
+    @Inject
+    lateinit var api: DataFetcher<List<Result>>
+    @Inject
+    lateinit var database: DataCache<User, String>
 
     @Provides
     fun provideRepositoryDecorator(): DataRepository {
