@@ -7,7 +7,6 @@ import com.example.random_user.model.di.data.ApiModule
 import com.example.random_user.model.di.data.DaggerDataComponent
 import com.example.random_user.model.di.data.DatabaseModule
 import com.example.random_user.model.di.decorator.DaggerRepoDecoratorComponent
-import com.example.random_user.model.di.decorator.RepoDecoratorComponent
 import com.example.random_user.model.di.decorator.RepoDecoratorModule
 import com.example.random_user.model.di.repository.local.DaggerLocalRepositoryComponent
 import com.example.random_user.model.di.repository.local.LocalRepositoryModule
