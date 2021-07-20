@@ -4,7 +4,6 @@ import com.example.random_user.model.di.ApplicationModule
 import com.example.random_user.model.local.UserDao
 import com.example.random_user.model.remote.UserApi
 import dagger.Component
-import dagger.Subcomponent
 import javax.inject.Singleton
 
 @Singleton
