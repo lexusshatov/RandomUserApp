@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
-import com.example.random_user.model.base.DI
+import com.example.random_user.model.baseold.DI
 import com.example.random_user.model.local.Gender
 import com.example.random_user.model.local.User
 import com.example.random_user.utils.emptyString

@@ -1,4 +1,4 @@
-package com.example.random_user.model.di.repository.base.data
+package com.example.random_user.model.di.data
 
 import com.example.random_user.model.remote.UserApi
 import dagger.Module

@@ -27,6 +27,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+
     }
     kotlinOptions {
         jvmTarget = '1.8'
@@ -34,17 +35,24 @@ android {
     buildFeatures {
         viewBinding true
     }
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
 }
 
 dependencies {
-    def dagger_version = '2.37'
+    def dagger_version = '2.38'
     def gson_converter_version = '2.9.0'
     def retrofit2_version = '2.9.0'
     def room_version = "2.3.0"
     def glide_version = "4.12.0"
 
     //Dagger
-    implementation "com.google.dagger:dagger:$dagger_version"
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version" // if you use the support libraries
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //Room
     implementation("androidx.room:room-runtime:$room_version")

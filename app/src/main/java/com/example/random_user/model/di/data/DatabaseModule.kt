@@ -1,7 +1,8 @@
-package com.example.random_user.model.di.repository.base.data
+package com.example.random_user.model.di.data
 
 import android.content.Context
 import androidx.room.Room
+import com.example.random_user.model.local.UserDao
 import com.example.random_user.model.local.UserDatabase
 import dagger.Module
 import dagger.Provides
@@ -10,17 +11,21 @@ import javax.inject.Singleton
 const val databaseName = "User_Database"
 
 @Module
-class LocalModule(private val context: Context) {
+class DatabaseModule(private val context: Context) {
 
     @Singleton
     @Provides
-    fun provideLocalDatabase(): UserDatabase {
+    fun provideDatabase(): UserDatabase {
         return Room.databaseBuilder(
             context,
             UserDatabase::class.java,
             databaseName
-        )
-            .fallbackToDestructiveMigration()
-            .build()
+        ).fallbackToDestructiveMigration().build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserDao(userDatabase: UserDatabase): UserDao {
+        return userDatabase.userDao()
     }
 }
