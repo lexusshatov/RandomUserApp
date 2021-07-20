@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
 import com.example.random_user.R
+import com.example.random_user.UserApp
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
-import com.example.random_user.model.baseold.DI
 import com.example.random_user.model.local.Gender
 import com.example.random_user.model.local.User
 import com.example.random_user.utils.emptyString
@@ -19,7 +19,12 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
 
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
-            UserDetailsViewModel(DI.getInstance().repository, userId)
+            UserDetailsViewModel(
+                (requireActivity().application as UserApp)
+                    .repoDecoratorComponent
+                    .repositoryDecorator(),
+                userId
+            )
         }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->

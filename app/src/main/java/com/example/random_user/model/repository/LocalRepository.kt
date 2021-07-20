@@ -5,7 +5,8 @@ import com.example.random_user.model.local.UserDao
 import com.example.random_user.model.local.UserDatabase
 import javax.inject.Inject
 
-class LocalRepository @Inject constructor(private val database: UserDao) : DataCache<User, String> {
+class LocalRepository @Inject constructor(private val database: UserDao)
+    : DataCache<User, String> {
 
     override fun getAllData() = database.getAll()
 

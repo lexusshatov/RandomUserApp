@@ -1,9 +1,9 @@
 package com.example.random_user.model.di.repository.remote
 
-import com.bumptech.glide.load.data.DataFetcher
 import com.example.random_user.model.di.data.DataComponent
 import com.example.random_user.model.di.repository.RepositoryScope
 import com.example.random_user.model.remote.Result
+import com.example.random_user.model.repository.DataFetcher
 import dagger.Component
 
 @RepositoryScope
