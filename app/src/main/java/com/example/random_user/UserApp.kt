@@ -13,9 +13,10 @@ import com.example.random_user.model.di.repository.local.DaggerLocalRepositoryCo
 import com.example.random_user.model.di.repository.local.LocalRepositoryModule
 import com.example.random_user.model.di.repository.remote.ApiRepositoryModule
 import com.example.random_user.model.di.repository.remote.DaggerApiRepositoryComponent
+import com.example.random_user.model.repository.DataRepository
 
 class UserApp: Application() {
-    lateinit var repoDecoratorComponent: RepoDecoratorComponent
+    lateinit var decorator: DataRepository
 
     override fun onCreate() {
         super.onCreate()
@@ -32,15 +33,17 @@ class UserApp: Application() {
             .localRepositoryModule(LocalRepositoryModule())
             .dataComponent(dataComponent)
             .build()
-        repoDecoratorComponent = DaggerRepoDecoratorComponent.builder()
+        val repoDecoratorComponent = DaggerRepoDecoratorComponent.builder()
             .repoDecoratorModule(RepoDecoratorModule())
             .apiRepositoryComponent(repoApiComponent)
             .localRepositoryComponent(repoLocalComponent)
             .build()
-
-        DaggerApplicationComponent.builder()
+        val appComponent = DaggerApplicationComponent.builder()
             .applicationModule(ApplicationModule(this))
             .repoDecoratorComponent(repoDecoratorComponent)
-            .build().inject(this)
+            .build()
+        appComponent.inject(this)
+
+        decorator = appComponent.getDecorator()
     }
 }

@@ -20,9 +20,7 @@ class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetail
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
             UserDetailsViewModel(
-                (requireActivity().application as UserApp)
-                    .repoDecoratorComponent
-                    .repositoryDecorator(),
+                (requireActivity().application as UserApp).decorator,
                 userId
             )
         }

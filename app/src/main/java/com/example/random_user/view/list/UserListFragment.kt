@@ -18,9 +18,7 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
     override val viewModelProvider: () -> UserListViewModel =
         {
             UserListViewModel(
-                (requireActivity().application as UserApp)
-                    .repoDecoratorComponent
-                    .repositoryDecorator()
+                (requireActivity().application as UserApp).decorator
             )
         }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserListBinding =
