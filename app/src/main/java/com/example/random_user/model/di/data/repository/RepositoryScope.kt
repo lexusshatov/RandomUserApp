@@ -1,4 +1,4 @@
-package com.example.random_user.model.di.repository
+package com.example.random_user.model.di.data.repository
 
 import javax.inject.Scope
 

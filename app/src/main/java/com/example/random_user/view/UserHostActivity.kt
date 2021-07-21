@@ -9,8 +9,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.random_user.R
 import com.example.random_user.databinding.ActivityUserDetailBinding
+import dagger.android.support.DaggerAppCompatActivity
 
-class UserHostActivity : AppCompatActivity() {
+class UserHostActivity : DaggerAppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 

@@ -1,7 +1,7 @@
-package com.example.random_user.model.di.repository.local
+package com.example.random_user.model.di.data.repository.local
 
 import com.example.random_user.model.di.data.DataComponent
-import com.example.random_user.model.di.repository.RepositoryScope
+import com.example.random_user.model.di.data.repository.RepositoryScope
 import com.example.random_user.model.local.User
 import com.example.random_user.model.repository.DataCache
 import dagger.Component
@@ -10,7 +10,6 @@ import dagger.Component
 @Component(
     dependencies = [DataComponent::class],
     modules = [
-        LocalRepositoryModule::class,
         LocalRepoBindModule::class
     ]
 )

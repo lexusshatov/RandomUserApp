@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import dagger.android.support.DaggerFragment
 
-abstract class BaseFragment<VM : BaseViewModel<*>, VB : ViewBinding> : Fragment() {
+abstract class BaseFragment<VM : BaseViewModel<*>, VB : ViewBinding> : DaggerFragment() {
 
     abstract val viewModelProvider: () -> VM
     protected val viewModel by lazy {

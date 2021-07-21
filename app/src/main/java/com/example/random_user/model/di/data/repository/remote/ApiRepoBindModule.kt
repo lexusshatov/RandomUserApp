@@ -1,4 +1,4 @@
-package com.example.random_user.model.di.repository.remote
+package com.example.random_user.model.di.data.repository.remote
 
 import com.example.random_user.model.remote.Result
 import com.example.random_user.model.repository.ApiRepository

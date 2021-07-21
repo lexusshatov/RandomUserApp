@@ -12,15 +12,19 @@ import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
 import com.example.random_user.model.local.Gender
 import com.example.random_user.model.local.User
+import com.example.random_user.model.repository.DataRepository
 import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel
+import javax.inject.Inject
 
 class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
+    @Inject
+    lateinit var decorator: DataRepository
 
     override val viewModelProvider: () -> UserDetailsViewModel =
         {
             UserDetailsViewModel(
-                (requireActivity().application as UserApp).decorator,
+                decorator,
                 userId
             )
         }

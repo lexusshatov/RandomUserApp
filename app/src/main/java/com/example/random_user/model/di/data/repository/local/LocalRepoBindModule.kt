@@ -1,4 +1,4 @@
-package com.example.random_user.model.di.repository.local
+package com.example.random_user.model.di.data.repository.local
 
 import com.example.random_user.model.local.User
 import com.example.random_user.model.repository.DataCache
