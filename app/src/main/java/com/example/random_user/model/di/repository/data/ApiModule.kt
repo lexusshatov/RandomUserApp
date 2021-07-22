@@ -1,6 +1,6 @@
-package com.example.random_user.model.di.data
+package com.example.random_user.model.di.repository.data
 
-import com.example.random_user.model.remote.UserApi
+import com.example.random_user.model.repository.remote.UserApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

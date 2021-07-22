@@ -1,9 +1,9 @@
-package com.example.random_user.model.di.data
+package com.example.random_user.model.di.repository.data
 
 import android.content.Context
 import androidx.room.Room
-import com.example.random_user.model.local.UserDao
-import com.example.random_user.model.local.UserDatabase
+import com.example.random_user.model.repository.local.UserDao
+import com.example.random_user.model.repository.local.UserDatabase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

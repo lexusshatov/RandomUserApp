@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.random_user.databinding.UserListContainerBinding
-import com.example.random_user.model.local.User
+import com.example.random_user.model.repository.local.User
 
 private val TAG: String = UserAdapter::class.java.simpleName
 

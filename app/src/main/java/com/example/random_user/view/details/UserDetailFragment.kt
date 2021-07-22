@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
 import com.example.random_user.R
-import com.example.random_user.UserApp
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
-import com.example.random_user.model.local.Gender
-import com.example.random_user.model.local.User
+import com.example.random_user.model.repository.local.Gender
+import com.example.random_user.model.repository.local.User
 import com.example.random_user.model.repository.DataRepository
 import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel

@@ -1,25 +1,20 @@
 package com.example.random_user
 
-import android.app.Application
-import com.example.random_user.model.di.ApplicationModule
 import com.example.random_user.model.di.DaggerApplicationComponent
-import com.example.random_user.model.di.data.ApiModule
-import com.example.random_user.model.di.data.DaggerDataComponent
-import com.example.random_user.model.di.data.DatabaseModule
-import com.example.random_user.model.di.data.repository.local.DaggerLocalRepositoryComponent
-import com.example.random_user.model.di.data.repository.remote.DaggerApiRepositoryComponent
 import com.example.random_user.model.di.decorator.DaggerRepoDecoratorComponent
+import com.example.random_user.model.di.repository.data.DaggerDataComponent
+import com.example.random_user.model.di.repository.data.DatabaseModule
+import com.example.random_user.model.di.repository.local.DaggerLocalRepositoryComponent
+import com.example.random_user.model.di.repository.remote.DaggerApiRepositoryComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
-class UserApp: DaggerApplication() {
+class UserApp : DaggerApplication() {
 
-    override fun onCreate() {
-        super.onCreate()
 
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val dataComponent = DaggerDataComponent.builder()
-            .apiModule(ApiModule())
-            .databaseModule(DatabaseModule(this))
+            .databaseModule(DatabaseModule(applicationContext))
             .build()
         val repoApiComponent = DaggerApiRepositoryComponent.builder()
             .dataComponent(dataComponent)
@@ -31,14 +26,9 @@ class UserApp: DaggerApplication() {
             .apiRepositoryComponent(repoApiComponent)
             .localRepositoryComponent(repoLocalComponent)
             .build()
-        val appComponent = DaggerApplicationComponent.builder()
-            .applicationModule(ApplicationModule(this))
-            .repoDecoratorComponent(repoDecoratorComponent)
+        return DaggerApplicationComponent.builder()
+            .application(this)
+            .decorator(repoDecoratorComponent)
             .build()
-        appComponent.inject(this)
-    }
-
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        //
     }
 }

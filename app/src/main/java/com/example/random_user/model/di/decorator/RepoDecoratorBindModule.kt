@@ -8,6 +8,7 @@ import dagger.Module
 @Module
 interface RepoDecoratorBindModule {
 
+    @DecoratorScope
     @Binds
     fun bindRepoDecorator(repoDecorator: RepositoryDecorator): DataRepository
 }
