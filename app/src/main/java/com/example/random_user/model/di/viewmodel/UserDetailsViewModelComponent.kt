@@ -4,6 +4,7 @@ import com.example.random_user.viewmodel.UserDetailsViewModel
 import dagger.BindsInstance
 import dagger.Subcomponent
 
+@ViewModelScope
 @Subcomponent(modules = [UserDetailsViewModelModule::class])
 interface UserDetailsViewModelComponent {
 

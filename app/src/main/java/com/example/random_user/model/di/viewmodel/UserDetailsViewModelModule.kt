@@ -8,6 +8,7 @@ import dagger.Provides
 @Module
 class UserDetailsViewModelModule {
 
+    @ViewModelScope
     @Provides
     fun provideUserDetailsViewModel(
         repository: DataRepository,

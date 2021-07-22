@@ -29,6 +29,7 @@ class UserDetailsFragment @Inject constructor() : BaseFragment<UserDetailsViewMo
             }
         })[UserDetailsViewModel::class.java]
     }
+    //factory.create(userId).viewModel
 
     private val userId by lazy {
         arguments?.getString(ARG_USER_ID) ?: emptyString()
