@@ -5,35 +5,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
+import com.example.random_user.model.di.viewmodel.UserDetailsViewModelComponent
 import com.example.random_user.model.repository.local.Gender
 import com.example.random_user.model.repository.local.User
-import com.example.random_user.model.repository.DataRepository
 import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel
 import javax.inject.Inject
 
-class UserDetailFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
+class UserDetailsFragment @Inject constructor() : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
     @Inject
-    lateinit var decorator: DataRepository
+    lateinit var factory: UserDetailsViewModelComponent.Factory
 
-    override val viewModelProvider: () -> UserDetailsViewModel =
-        {
-            UserDetailsViewModel(
-                decorator,
-                userId
-            )
-        }
+    override val viewModel by lazy {
+        ViewModelProvider(this, object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return factory.create(userId).viewModel as T
+            }
+        })[UserDetailsViewModel::class.java]
+    }
+
+    private val userId by lazy {
+        arguments?.getString(ARG_USER_ID) ?: emptyString()
+    }
+
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->
             FragmentUserDetailBinding.inflate(inflater, container, false)
         }
-    private val userId: String by lazy {
-        arguments?.getString(ARG_USER_ID, emptyString()) ?: emptyString()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

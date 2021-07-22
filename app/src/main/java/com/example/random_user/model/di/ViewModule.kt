@@ -1,12 +1,13 @@
 package com.example.random_user.model.di
 
+import com.example.random_user.model.di.viewmodel.ViewModelBindModule
 import com.example.random_user.view.UserHostActivity
-import com.example.random_user.view.details.UserDetailFragment
+import com.example.random_user.view.details.UserDetailsFragment
 import com.example.random_user.view.list.UserListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module
+@Module(includes = [ViewModelBindModule::class])
 interface ViewModule {
 
     @ContributesAndroidInjector
@@ -16,5 +17,5 @@ interface ViewModule {
     fun contributeProductUserListFragment(): UserListFragment
 
     @ContributesAndroidInjector
-    fun contributeProductUserDetailFragment(): UserDetailFragment
+    fun contributeProductUserDetailFragment(): UserDetailsFragment
 }

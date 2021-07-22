@@ -6,8 +6,11 @@ import com.example.random_user.model.repository.local.User
 import com.example.random_user.model.repository.DataRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserListViewModel(private val repository: DataRepository) : BaseViewModel<List<User>>() {
+class UserListViewModel @Inject constructor(
+    private val repository: DataRepository
+) : BaseViewModel<List<User>>() {
 
     override val data by lazy {
         repository.getAllData()

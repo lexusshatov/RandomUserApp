@@ -2,6 +2,7 @@ package com.example.random_user.model.di
 
 import com.example.random_user.UserApp
 import com.example.random_user.model.di.decorator.RepoDecoratorComponent
+import com.example.random_user.model.di.viewmodel.ViewModelBindModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -11,7 +12,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ViewModule::class
+        ViewModule::class,
+        ViewModelBindModule::class
     ],
     dependencies = [
         RepoDecoratorComponent::class

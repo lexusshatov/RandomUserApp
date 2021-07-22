@@ -4,25 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.random_user.R
-import com.example.random_user.UserApp
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserListBinding
-import com.example.random_user.model.repository.DataRepository
-import com.example.random_user.view.details.UserDetailFragment
+import com.example.random_user.view.details.UserDetailsFragment
 import com.example.random_user.view.list.adapter.UserAdapter
 import com.example.random_user.viewmodel.UserListViewModel
-import javax.inject.Inject
 
 class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding>() {
-    @Inject
-    lateinit var decorator: DataRepository
+    override val viewModel by viewModels<UserListViewModel> { viewModelFactory }
 
-    override val viewModelProvider: () -> UserListViewModel =
-        {
-            UserListViewModel(decorator)
-        }
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserListBinding =
         { inflater, container ->
             FragmentUserListBinding.inflate(inflater, container, false)
@@ -34,7 +27,7 @@ class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding
             onClickListener = { user ->
                 val bundle = Bundle()
                 bundle.putString(
-                    UserDetailFragment.ARG_USER_ID,
+                    UserDetailsFragment.ARG_USER_ID,
                     user.id
                 )
                 view.findNavController().navigate(R.id.show_user_detail, bundle)
