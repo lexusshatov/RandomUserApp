@@ -12,9 +12,11 @@ import com.example.random_user.databinding.FragmentUserListBinding
 import com.example.random_user.view.details.UserDetailsFragment
 import com.example.random_user.view.list.adapter.UserAdapter
 import com.example.random_user.viewmodel.UserListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserListFragment : BaseFragment<UserListViewModel, FragmentUserListBinding>() {
-    override val viewModel by viewModels<UserListViewModel> { viewModelFactory }
+    override val viewModel by viewModels<UserListViewModel>()
 
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserListBinding =
         { inflater, container ->

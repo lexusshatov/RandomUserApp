@@ -5,35 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
 import com.example.random_user.databinding.FragmentUserDetailBinding
-import com.example.random_user.model.di.viewmodel.UserDetailsViewModelComponent
 import com.example.random_user.model.repository.local.Gender
 import com.example.random_user.model.repository.local.User
-import com.example.random_user.utils.emptyString
 import com.example.random_user.viewmodel.UserDetailsViewModel
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class UserDetailsFragment @Inject constructor() : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
-    @Inject
-    lateinit var factory: UserDetailsViewModelComponent.Factory
-
-    override val viewModel by lazy {
-        ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return factory.create(userId).viewModel as T
-            }
-        })[UserDetailsViewModel::class.java]
-    }
-    //factory.create(userId).viewModel
-
-    private val userId by lazy {
-        arguments?.getString(ARG_USER_ID) ?: emptyString()
-    }
+@AndroidEntryPoint
+class UserDetailsFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
+    override val viewModel by viewModels<UserDetailsViewModel>()
 
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->

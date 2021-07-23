@@ -6,16 +6,20 @@ import com.example.random_user.model.repository.local.UserDao
 import com.example.random_user.model.repository.local.UserDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 const val databaseName = "User_Database"
 
 @Module
-class DatabaseModule(private val context: Context) {
+@InstallIn(SingletonComponent::class)
+class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideDatabase(): UserDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): UserDatabase {
         return Room.databaseBuilder(
             context,
             UserDatabase::class.java,

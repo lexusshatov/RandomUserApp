@@ -4,10 +4,12 @@ import androidx.lifecycle.viewModelScope
 import com.example.random_user.base.BaseViewModel
 import com.example.random_user.model.repository.local.User
 import com.example.random_user.model.repository.DataRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class UserListViewModel @Inject constructor(
     private val repository: DataRepository
 ) : BaseViewModel<List<User>>() {
