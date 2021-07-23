@@ -2,12 +2,12 @@ package com.example.random_user.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import com.example.random_user.base.BaseViewModel
-import com.example.random_user.model.local.User
-import com.example.random_user.model.repository.RepositoryDecorator
+import com.example.random_user.model.repository.DataRepository
+import com.example.random_user.model.repository.local.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UserListViewModel(private val repository: RepositoryDecorator) : BaseViewModel<List<User>>() {
+class UserListViewModel(private val repository: DataRepository) : BaseViewModel<List<User>>() {
 
     override val data by lazy {
         repository.getAllData()

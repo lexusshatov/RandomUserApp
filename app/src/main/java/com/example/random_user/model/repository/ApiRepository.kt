@@ -1,7 +1,7 @@
 package com.example.random_user.model.repository
 
-import com.example.random_user.model.remote.Result
-import com.example.random_user.model.remote.UserApi
+import com.example.random_user.model.repository.remote.Result
+import com.example.random_user.model.repository.remote.UserApi
 
 class ApiRepository(private val api: UserApi) : DataFetcher<List<Result>> {
 

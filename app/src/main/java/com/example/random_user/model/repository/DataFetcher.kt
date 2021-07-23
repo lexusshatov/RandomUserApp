@@ -1,6 +1,6 @@
 package com.example.random_user.model.repository
 
-interface DataFetcher<out T> {
+interface DataFetcher<T> {
 
     suspend fun fetchData(count: Int): T
 }

@@ -1,8 +1,8 @@
 package com.example.random_user.model.repository
 
-import com.example.random_user.model.local.User
-import com.example.random_user.model.remote.Result
-import com.example.random_user.model.remote.toUser
+import com.example.random_user.model.repository.local.User
+import com.example.random_user.model.repository.remote.Result
+import com.example.random_user.model.repository.remote.toUser
 
 interface DataRepository : DataFetcher<Unit>, DataCache<User, String>
 

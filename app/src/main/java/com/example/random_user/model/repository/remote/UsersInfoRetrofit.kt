@@ -1,7 +1,7 @@
-package com.example.random_user.model.remote
+package com.example.random_user.model.repository.remote
 
-import com.example.random_user.model.local.Gender
-import com.example.random_user.model.local.UserBuilder
+import com.example.random_user.model.repository.local.Gender
+import com.example.random_user.model.repository.local.UserBuilder
 import java.util.*
 
 data class UsersInfoRetrofit(

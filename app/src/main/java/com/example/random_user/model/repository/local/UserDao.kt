@@ -1,4 +1,4 @@
-package com.example.random_user.model.local
+package com.example.random_user.model.repository.local
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

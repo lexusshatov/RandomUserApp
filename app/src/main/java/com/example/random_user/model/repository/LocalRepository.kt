@@ -1,13 +1,13 @@
 package com.example.random_user.model.repository
 
-import com.example.random_user.model.local.User
-import com.example.random_user.model.local.UserDatabase
+import com.example.random_user.model.repository.local.User
+import com.example.random_user.model.repository.local.UserDao
 
-class LocalRepository(private val database: UserDatabase) : DataCache<User, String> {
+class LocalRepository(private val database: UserDao) : DataCache<User, String> {
 
-    override fun getAllData() = database.userDao().getAll()
+    override fun getAllData() = database.getAll()
 
-    override fun getDataById(id: String) = database.userDao().getUserById(id)
+    override fun getDataById(id: String) = database.getUserById(id)
 
-    override suspend fun saveData(users: List<User>) = database.userDao().insert(users)
+    override suspend fun saveData(users: List<User>) = database.insert(users)
 }

@@ -1,4 +1,4 @@
-package com.example.random_user.model.remote
+package com.example.random_user.model.repository.remote
 
 import retrofit2.http.GET
 import retrofit2.http.Query

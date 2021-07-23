@@ -1,4 +1,4 @@
-package com.example.random_user.model.local
+package com.example.random_user.model.repository.local
 
 class UserBuilder(private val id: String) {
     private var gender = Gender.MALE
