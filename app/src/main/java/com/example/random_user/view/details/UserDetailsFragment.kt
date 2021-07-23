@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -27,7 +26,7 @@ class UserDetailsFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetai
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 return viewModelFactory.create(userId) as T
             }
-        })
+        })[UserDetailsViewModel::class.java]
     }
 
     private val userId by lazy {

@@ -6,9 +6,7 @@ import com.example.random_user.model.repository.local.User
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
 
-@HiltViewModel
 class UserDetailsViewModel @AssistedInject constructor(
     private val repository: DataRepository,
     @Assisted private val userId: String
