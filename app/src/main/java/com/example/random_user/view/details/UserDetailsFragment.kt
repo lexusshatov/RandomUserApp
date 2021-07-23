@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.random_user.R
 import com.example.random_user.base.BaseFragment
@@ -17,7 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class UserDetailsFragment : BaseFragment<UserDetailsViewModel, FragmentUserDetailBinding>() {
-    override val viewModel by viewModels<UserDetailsViewModel>()
+    override val viewModel by lazy {
+        ViewModelProvider.Factory
+    }
 
     override val viewBindingProvider: (LayoutInflater, ViewGroup?) -> FragmentUserDetailBinding =
         { inflater, container ->
